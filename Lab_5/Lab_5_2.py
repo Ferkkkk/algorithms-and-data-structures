@@ -1,3 +1,4 @@
+#Злиття
 def Merge(left, right):
     result = []
     i = j = 0
@@ -14,7 +15,7 @@ def Merge(left, right):
         result += right[j:]
     return result
 
-
+#Розбиття масиву та його сортування злиттям
 def MergeSort(array):
     if len(array) == 1:
         return array
@@ -23,7 +24,7 @@ def MergeSort(array):
     right = MergeSort(array[middle:])
     return Merge(left, right)
 
-
+#main
 array = [int(i)
          for i in input("Введіть елементи масиву через пробіл:").split()]
 print(*array)
