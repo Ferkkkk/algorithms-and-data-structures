@@ -27,8 +27,10 @@ class Sort():
             self.Merge(Array, start, middle, end)
         return Array
 
+
 sort = Sort()
-array = [int(i) for i in input("Введіть елементи масиву через пробіл:").split()]
+array = [int(i)
+         for i in input("Введіть елементи масиву через пробіл:").split()]
 print(*array)
 result = sort.MergeSort(array, 0, len(array)-1)
 print(*result)
