@@ -8,17 +8,18 @@ class Sort():
         return Left + Right
 
     def Partition(self, A):
-        x = A[-1]
+        unit = A[-1]
         i = -1
         for j in range(len(A)-1):
-            if A[j] <= x:
-                i+=1
+            if A[j] <= unit:
+                i += 1
                 A[i], A[j] = A[j], A[i]
         A[i+1], A[-1] = A[-1], A[i+1]
         return i+1
 
     def RandomizedPartition(self,):
         pass
+
 
 sort = Sort()
 array = [int(i)
