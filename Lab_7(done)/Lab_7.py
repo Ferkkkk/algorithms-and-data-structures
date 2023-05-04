@@ -32,7 +32,6 @@ class Sort():
 
         return InputArray
 
-
 # main
 sort = Sort()
 array = [int(i)

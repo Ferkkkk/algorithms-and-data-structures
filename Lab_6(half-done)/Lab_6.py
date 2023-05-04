@@ -41,7 +41,7 @@ class Sort():
 
 
 sort = Sort()
-array = [int(i)
+array = [float(i)
          for i in input("Введіть елементи масиву через пробіл:").split()]
 print("Ваш масив:", *array)
 result1 = sort.QuickSort(array)
