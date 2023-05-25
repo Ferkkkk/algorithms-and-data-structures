@@ -18,22 +18,53 @@ class Node:
             else:
                 self.right.insert(data)
 
-    def delete(self, value):
-        if value < self.data:
-            if self.left:
-                self.left = self.left.delete(value)
-        elif value > self.data:
-            if self.right:
-                self.right = self.right.delete(value)
-        else:
-            if self.left is None:
-                return self.right
-            elif self.right is None:
-                return self.left
+    @staticmethod
+    def getMinimumKey(curr):
+        while curr.left:
+            curr = curr.left
+        return curr
+
+    def delete(self, data):
+        parent = None
+        curr = self
+
+        while curr and curr.data != data:
+            parent = curr
+            if data < curr.data:
+                curr = curr.left
             else:
-                min_value = self.right.find_min()
-                self.data = min_value
-                self.right = self.right.delete(min_value)
+                curr = curr.right
+
+        if curr is None:
+            return self
+
+        if curr.left is None and curr.right is None:
+            if curr != self:
+                if parent.left == curr:
+                    parent.left = None
+                else:
+                    parent.right = None
+            else:
+                self = None
+        elif curr.left and curr.right:
+            successor = self.getMinimumKey(curr.right)
+            val = successor.data
+            self = self.delete(successor.data)
+            curr.data = val
+        else:
+            if curr.left:
+                child = curr.left
+            else:
+                child = curr.right
+
+            if curr != self:
+                if curr == parent.left:
+                    parent.left = child
+                else:
+                    parent.right = child
+            else:
+                self = child
+
         return self
 
     def find_min(self):
@@ -93,7 +124,7 @@ while True:
         root.infix_order()
     elif action.startswith(delete_command):
         value = int(action.split(' ')[1])
-        root.delete(value)
+        root = root.delete(value)
         root.display_tree()
     else:
         root.insert(int(action))
